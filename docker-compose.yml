@@ -1,12 +1,15 @@
-version: '2'
+version: '3.2'
 
 services:
   web:
     build:
       context: .
       dockerfile: Dockerfile-nginx
+    env_file:
+      - ./.env
     ports:
     - "8080:80"
+    - "8081:443"
     networks:
       - attendizenet
     volumes:
@@ -17,6 +20,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-php
+    env_file:
+      - ./.env
     depends_on:
       - db
       - maildev
@@ -24,6 +29,16 @@ services:
     volumes:
       - .:/usr/share/nginx/html/attendize
     networks: 
+      - attendizenet
+  composer:
+    build:
+      context: .
+      dockerfile: Dockerfile-composer
+    depends_on:
+      - php
+    volumes:
+      - .:/usr/share/nginx/html/attendize
+    networks:
       - attendizenet
   php-worker:
     build:
@@ -39,15 +54,20 @@ services:
     networks:
       - attendizenet
   db:
-    image: postgres
+    image: mysql:5.7.23
+    restart: always
+    env_file:
+      - ./.env
     environment:
-      - POSTGRES_USER=attendize
-      - POSTGRES_PASSWORD=attendize
-      - POSTGRES_DB=attendize
+      MYSQL_ROOT_PASSWORD: "yes"
+      MYSQL_HOST: ${DB_HOST}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "5433:5432"
+      - "3306:3306"
     volumes:
-      - ./docker/pgdata:/var/lib/postgresql/data
+      - "mysql-data:/var/lib/mysql"
     networks:
     - attendizenet
   maildev:
@@ -64,3 +84,6 @@ services:
 networks:
   attendizenet:
     driver: bridge
+
+volumes:
+    mysql-data:

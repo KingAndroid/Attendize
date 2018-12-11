@@ -8,21 +8,18 @@
 Open-source ticket selling and event management platform
 </p>
 
-https://www.attendize.com
 
-> PLEASE NOTE: Attendize is in the early stages of development and therefore is likely to contain bugs and unfinished features. Be wary about using Attendize in a production environment.
+> Please report bugs here: https://github.com/Attendize/Attendize/issues. Detailed bug reports are more likely to be looked at. Simple creating an issue and saying "it doesn't work" is not useful. Providing some steps to reproduce your problem as well as details about your operating system, PHP version etc can help. <br />
 
-> Please ask any questions/report bugs in our new support forum: https://attendize.com/forum/
+> Take a look http://www.attendize.com/troubleshooting.html and follow the http://www.attendize.com/getting_started.html guide to make sure you have configured attendize correctly.  
 
-Demo Event Page: http://attendize.website/e/1/acmes-amazing-demo-event
----
-
+Documentation Website: http://www.attendize.com<br />
+Demo Event Page: http://attendize.website/e/799/attendize-test-event-w-special-guest-attendize<br />
+Demo Back-end Demo: http://attendize.website/signup<br />
 
 *Attendize* is an open-source event ticketing and event management application built using the Laravel PHP framework. Attendize was created to offer event organisers a simple solution to managing general admission events, without paying extortionate service fees.
 
-The current version (v1.X.X) will not receive any significant feature improvements, only security fixes. All effort will go into developing <a href="https://github.com/Attendize/Attendize/tree/develop">v2.0.0</a>.
-
-Current Features (v1.X.X)
+### Current Features (v1.X.X)
 ---
  - Beautiful mobile friendly event pages
  - Easy attendee management - Refunds, Messaging etc.
@@ -48,53 +45,24 @@ Current Features (v1.X.X)
  - Public event listings page for organisers
  - Ability to ask custom questions during checkout
  - Browser based QR code scanner for door management
-    
-Upcoming changes in v2.0.0
+
+### Contribution
 ---
- - Theme support
- - Plugin Support
- - Localisation 
- - Increased test coverage
- - Laravel 5.4
- - IOS/Android check-in / door management apps
- - Coupon/discount code support
- - Support for more payment providers
- - WordPress Plug-in 
+Feel free to fork and contribute. If you are unsure about adding a feature create a Github issue to ask for Feedback. Read the [contribution guidelines](http://www.attendize.com/contributions.html)
 
-Official Documentation
+### Installation
 ---
+To get developing straight away use the [Pre-configured Docker Environment](http://www.attendize.com/getting_started.html#running-attendize-in-docker-for-development)<br />
+To do a manual installation use the [Manual Installation Steps](http://www.attendize.com/getting_started.html#manual-installation)
 
-Limited Documentation available at https://www.attendize.com/documentation.php. Github will be updated with more comprehensive documentation soon.
-
-
-Contribution
+### Troubleshooting
 ---
-
-Feel free to fork and contribute. I could use the help!
-
-Docker dev environment
----
-
-To run a docker dev entionment do the following:
-
-```
-git clone https://github.com/Attendize/Attendize
-cd Attendize
-cp .env.example .env
-chmod -R a+w storage
-chmod -R a+w public/user_content
-docker-compose build
-docker run --rm -v $(pwd):/app composer/composer install
-docker-compose up -d
-docker-compose run php php artisan attendize:install
-```
-
-Attendize will be available at `http://localhost:8080` and maildev at `http://localhost:1080`
+If you are having problems please read the [troubleshooting guide](http://www.attendize.com/troubleshooting.html) 
 
 License
 ---
 
-Attendize is open-sourced software licensed under the Attribution Assurance License. See [https://www.attendize.com/licence.php](https://www.attendize.com/licence.php) for further details. We also have white-label licence options available.
+Attendize is open-sourced software licensed under the Attribution Assurance License. See [http://www.attendize.com/license.html](http://www.attendize.com/license.html) for further details. We also have white-label licence options available.
 
 Contributors 
 ---
@@ -105,3 +73,5 @@ Contributors
 * James Campbell ([Github](https://github.com/jncampbell))
 * JapSeyz ([Github](https://github.com/JapSeyz))
 * Mark Walet ([Github](https://github.com/markwalet))
+* Jeremy Quinton ([Github](https://github.com/jeremyquinton))
+* Sebastian Schmidt ([Github](https://github.com/publicarray))
